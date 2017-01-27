@@ -15,20 +15,21 @@ class PolyTreeNode
 
     if new_parent.nil?
       parent.children.delete(self)
-    elsif new_parent != parent && parent
-      # debugger
-      parent.children.delete(self)
-      new_parent.children << self unless new_parent.children.include?(self)
+    elsif new_parent != parent #&& parent
+      remove_from_parent
+      add_child(new_parent)
     else
-      new_parent.children << self unless new_parent.children.include?(self)
+      add_child(new_parent)
     end
     @parent = new_parent
   end
 
-  # def add_child(parent)
-  #   other_node.children << self unless other_node.children.include?(self)
-  # end
-  #
-  # def remove_child
-  # end
+  def add_child(parent)
+    parent.children << self unless parent.children.include?(self)
+  end
+
+  def remove_from_parent
+    return nil unless parent
+    parent.children.delete(self)
+  end
 end
