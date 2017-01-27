@@ -34,4 +34,8 @@ class KnightPathFinder
     PolyTreeNode.new(pos)
   end
 
+  def new_move_positions(pos)
+    new_moves = KnightPathFinder.valid_moves(pos)
+    new_moves.reject { |move| @visited_positions.include? move }
+  end
 end
