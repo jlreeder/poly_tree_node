@@ -15,15 +15,6 @@ class KnightPathFinder
 
   attr_reader :move_tree
 
-  def initialize(pos)
-    @move_tree = build_move_tree(pos)
-    @visited_positions = [pos]
-  end
-
-  def build_move_tree(pos)
-    PolyTreeNode.new(pos)
-  end
-
   def self.valid_moves(pos)
     x, y = pos
     moves = KNIGHT_MOVES.map do |k_pos|
@@ -32,6 +23,15 @@ class KnightPathFinder
     end
 
     moves.select { |move| move.all? { |el| el.between?(0, 9) } }
+  end
+
+  def initialize(pos)
+    @move_tree = build_move_tree(pos)
+    @visited_positions = [pos]
+  end
+
+  def build_move_tree(pos)
+    PolyTreeNode.new(pos)
   end
 
 end
