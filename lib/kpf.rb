@@ -36,6 +36,8 @@ class KnightPathFinder
 
   def new_move_positions(pos)
     new_moves = KnightPathFinder.valid_moves(pos)
-    new_moves.reject { |move| @visited_positions.include? move }
+    new_moves.reject! { |move| @visited_positions.include? move }
+    @visited_positions += new_moves
+    new_moves
   end
 end
