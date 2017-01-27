@@ -22,7 +22,7 @@ class KnightPathFinder
       [ (x + k_x), (y + k_y) ]
     end
 
-    moves.select { |move| move.all? { |el| el.between?(0, 9) } }
+    moves.select { |move| move.all? { |el| el.between?(0, 7) } }
   end
 
   def initialize(pos)
