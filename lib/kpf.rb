@@ -17,6 +17,7 @@ class KnightPathFinder
 
   def initialize(pos)
     @move_tree = build_move_tree(pos)
+    @visited_positions = [pos]
   end
 
   def build_move_tree(pos)
@@ -25,10 +26,12 @@ class KnightPathFinder
 
   def self.valid_moves(pos)
     x, y = pos
-    KNIGHT_MOVES.map do |k_pos|
+    moves = KNIGHT_MOVES.map do |k_pos|
       k_x, k_y = k_pos
       [ (x + k_x), (y + k_y) ]
     end
+
+    moves.select { |move| move.all? { |el| el.between?(0, 9) } }
   end
 
 end
